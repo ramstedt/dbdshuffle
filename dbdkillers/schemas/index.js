@@ -1,2 +1,3 @@
 import {killer} from './killer'
-export const schemaTypes = [killer]
+import {basePerks} from './basePerks'
+export const schemaTypes = [killer, basePerks]

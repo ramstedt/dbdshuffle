@@ -1,6 +1,6 @@
 export const killer = {
   name: 'killer',
-  title: 'Killer',
+  title: 'Killers',
   type: 'document',
   fields: [
     {
@@ -14,9 +14,6 @@ export const killer = {
       title: 'Image',
       type: 'image',
       validation: (Rule) => Rule.required(),
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: 'perks',
@@ -33,15 +30,16 @@ export const killer = {
               validation: (Rule) => Rule.required(),
             },
             {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
-              validation: (Rule) => Rule.required(),
-            },
-            {
               name: 'image',
               title: 'Image',
               type: 'image',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'string',
+              description: 'get the URL from: https://deadbydaylight.fandom.com/wiki/',
               validation: (Rule) => Rule.required(),
             },
           ],
