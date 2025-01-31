@@ -111,7 +111,7 @@ export default function Home() {
           Randomise Killer
         </button>
         <button onClick={getRandomPerks} disabled={allPerks.length < 4}>
-          Randomise 4 Perks
+          Randomise Perks
         </button>
         <button
           onClick={randomiseEverything}
@@ -131,8 +131,8 @@ export default function Home() {
                 className={styles.killerImage}
                 src={urlFor(data.image.asset)}
                 alt={data.name}
-                width={300}
-                height={300}
+                width={380}
+                height={380}
               />
             ) : (
               <p>No image available</p>
@@ -150,8 +150,8 @@ export default function Home() {
                       className={styles.perkImage}
                       src={urlFor(perk.image.asset)}
                       alt={perk.name}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                     />
                   ) : null}
                   <a
