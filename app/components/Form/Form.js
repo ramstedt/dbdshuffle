@@ -28,16 +28,16 @@ export default function Form() {
     e.preventDefault();
     setDisableButton(true);
 
-    const { message } = formData;
-    const captchaToken = grecaptcha.getResponse();
-
-    if (!captchaToken) {
+    if (!recaptchaValue) {
       setStatus({ type: 'error', message: 'Please complete the reCAPTCHA.' });
       setDisableButton(false);
       return;
     }
 
-    const requestData = { message, captchaToken };
+    const requestData = {
+      message: formData.message,
+      captchaToken: recaptchaValue,
+    };
 
     try {
       const response = await fetch('/api/send-email', {
@@ -62,7 +62,7 @@ export default function Form() {
       });
     } finally {
       setFormData({ message: '' });
-      grecaptcha.reset();
+      recaptchaRef.current.reset();
       setDisableButton(false);
     }
   };

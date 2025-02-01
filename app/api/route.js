@@ -30,14 +30,11 @@ export async function POST(req) {
       },
     });
 
-    // Email options
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"Feedback" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
       subject: `Feedback via dbdkillerperkshuffle`,
-      text: `
-        ${message}
-      `,
+      text: message,
     };
 
     let info = await transporter.sendMail(mailOptions);
@@ -54,4 +51,10 @@ export async function POST(req) {
       { status: 500 }
     );
   }
+}
+
+export function GET() {
+  return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+    status: 405,
+  });
 }
