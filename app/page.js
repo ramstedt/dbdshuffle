@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { client } from '@/dbdkillers/sanity';
 import imageUrlBuilder from '@sanity/image-url';
-import Form from './components/form';
+import Form from './components/Form/Form';
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source).url();
