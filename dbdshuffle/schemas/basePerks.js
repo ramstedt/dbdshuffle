@@ -10,6 +10,20 @@ export const basePerks = {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: 'Perk belongs to',
+      name: 'type',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          {title: 'Killers', value: 'killer'},
+          {title: 'Survivors', value: 'survivor'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',

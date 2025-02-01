@@ -5,9 +5,9 @@ import {schemaTypes} from './schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'dbdkillers',
+  title: 'dbdshuffle',
 
-  projectId: 'nc02e7dy',
+  projectId: 'k5uoaan1',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
