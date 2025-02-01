@@ -3,11 +3,16 @@
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
+  flex-direction: column;
+  max-width: 200px;
+  margin: auto;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .killerContainer h2 {
@@ -16,7 +21,8 @@
 }
 
 .killerImage {
-  border-radius: 10px;
+  height: 200px;
+  width: 200px;
 }
 
 .perksList {
@@ -29,6 +35,7 @@
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
 .perkImage {
@@ -44,4 +51,22 @@
 
 .perkName:hover {
   text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .controls {
+    flex-direction: row;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .killerImage {
+    height: auto;
+    width: auto;
+  }
 }
