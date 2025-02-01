@@ -2,10 +2,9 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
   flex-direction: column;
   max-width: 200px;
-  margin: auto;
+  margin: 0 auto 0 auto;
 }
 
 .wrapper {
@@ -13,6 +12,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5rem;
 }
 
 .killerContainer h2 {
@@ -56,6 +56,7 @@
 @media screen and (min-width: 768px) {
   .controls {
     flex-direction: row;
+    max-width: fit-content;
   }
 
   .wrapper {
@@ -66,7 +67,7 @@
   }
 
   .killerImage {
-    height: auto;
-    width: auto;
+    height: 380px;
+    width: 380px;
   }
 }

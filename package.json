@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
+    "axios": "^1.7.9",
     "next": "15.1.6",
     "next-sanity": "^9.8.47",
+    "nodemailer": "^6.10.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-spinners": "^0.15.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
