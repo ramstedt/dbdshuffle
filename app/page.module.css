@@ -54,6 +54,13 @@
   text-decoration: underline;
 }
 
+.seo {
+  max-width: 900px;
+  margin: auto;
+  color: grey;
+  text-align: left;
+}
+
 @media screen and (min-width: 768px) {
   .controls {
     flex-direction: row;

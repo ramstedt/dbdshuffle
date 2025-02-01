@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { client } from '@/dbdshuffle/sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import Form from './components/Form/Form';
+import Link from 'next/link';
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source).url();
@@ -121,104 +122,145 @@ export default function Home() {
   }, [characters, getRandomCharacter, getRandomPerks]);
 
   return (
-    <main>
-      <div className={styles.controls}>
-        <select
-          onChange={(e) => setSelectedType(e.target.value)}
-          value={selectedType}
-        >
-          <option value='killer'>Killers</option>
-          <option value='survivor'>Survivors</option>
-        </select>
+    <>
+      <main>
+        <div className={styles.controls}>
+          <select
+            onChange={(e) => setSelectedType(e.target.value)}
+            value={selectedType}
+          >
+            <option value='killer'>Killers</option>
+            <option value='survivor'>Survivors</option>
+          </select>
 
-        <select
-          onChange={handleCharacterSelect}
-          value={selectedCharacter?.name || ''}
-          disabled={characters.length === 0}
-        >
-          <option value=''>
-            Select a {selectedType === 'killer' ? 'Killer' : 'Survivor'}
-          </option>
-          {characters.map((character) => (
-            <option key={character.name} value={character.name}>
-              {character.name}
+          <select
+            onChange={handleCharacterSelect}
+            value={selectedCharacter?.name || ''}
+            disabled={characters.length === 0}
+          >
+            <option value=''>
+              Select a {selectedType === 'killer' ? 'Killer' : 'Survivor'}
             </option>
-          ))}
-        </select>
+            {characters.map((character) => (
+              <option key={character.name} value={character.name}>
+                {character.name}
+              </option>
+            ))}
+          </select>
 
-        <button onClick={getRandomCharacter} disabled={characters.length === 0}>
-          Randomise {selectedType === 'killer' ? 'Killer' : 'Survivor'}
-        </button>
+          <button
+            onClick={getRandomCharacter}
+            disabled={characters.length === 0}
+          >
+            Randomise {selectedType === 'killer' ? 'Killer' : 'Survivor'}
+          </button>
 
-        <button onClick={getRandomPerks} disabled={allPerks.length < 4}>
-          Randomise Perks
-        </button>
+          <button onClick={getRandomPerks} disabled={allPerks.length < 4}>
+            Randomise Perks
+          </button>
 
-        <button
-          onClick={randomiseEverything}
-          disabled={characters.length === 0 || allPerks.length < 4}
-        >
-          Randomise Everything
-        </button>
-      </div>
-
-      {isLoading && <p>Loading...</p>}
-
-      <div className={styles.wrapper}>
-        {data && (
-          <div className={styles.characterContainer}>
-            <h2>{data.name}</h2>
-            {data.image?.asset ? (
-              <div className={styles.killerImageWrapper}>
-                <Image
-                  className={styles.characterImage}
-                  src={urlFor(data.image.asset)}
-                  alt={data.name}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  sizes='(max-width: 300px)'
-                />
-              </div>
-            ) : (
-              <p>No image available</p>
-            )}
-          </div>
-        )}
-
-        <div>
-          {randomisedPerks ? (
-            <div>
-              <h2>Perks:</h2>
-              <ul className={styles.perksList}>
-                {randomisedPerks.map((perk, index) => (
-                  <li key={index} className={styles.perkItem}>
-                    {perk.image?.asset ? (
-                      <Image
-                        className={styles.perkImage}
-                        src={urlFor(perk.image.asset)}
-                        alt={perk.name}
-                        width={80}
-                        height={80}
-                      />
-                    ) : null}
-                    <a
-                      href={perk.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className={styles.perkName}
-                    >
-                      {perk.name} <br />
-                      <small>({perk.characterName})</small>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+          <button
+            onClick={randomiseEverything}
+            disabled={characters.length === 0 || allPerks.length < 4}
+          >
+            Randomise Everything
+          </button>
         </div>
-      </div>
 
-      <Form />
-    </main>
+        {isLoading && <p>Loading...</p>}
+
+        <div className={styles.wrapper}>
+          {data && (
+            <div className={styles.characterContainer}>
+              <h2>{data.name}</h2>
+              {data.image?.asset ? (
+                <div className={styles.killerImageWrapper}>
+                  <Image
+                    className={styles.characterImage}
+                    src={urlFor(data.image.asset)}
+                    alt={data.name}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sises='(max-width: 300px)'
+                  />
+                </div>
+              ) : (
+                <p>No image available</p>
+              )}
+            </div>
+          )}
+
+          <div>
+            {randomisedPerks ? (
+              <div>
+                <h2>Perks:</h2>
+                <ul className={styles.perksList}>
+                  {randomisedPerks.map((perk, index) => (
+                    <li key={index} className={styles.perkItem}>
+                      {perk.image?.asset ? (
+                        <Image
+                          className={styles.perkImage}
+                          src={urlFor(perk.image.asset)}
+                          alt={perk.name}
+                          width={80}
+                          height={80}
+                        />
+                      ) : null}
+                      <Link
+                        href={perk.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className={styles.perkName}
+                      >
+                        {perk.name} <br />
+                        <small>({perk.characterName})</small>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <div className={styles.seo}>
+          <h2>🎲 Dead by Daylight Perk & Character Randomiser</h2>
+          <p>
+            Welcome to the Dead by Daylight Shuffle, the ultimate randomiser for
+            killers, survivors, and perks! Whether you're a competitive player
+            looking for a challenge or just having fun, our DBD Randomiser will
+            shuffle your Killer or Survivor, along with their unique and general
+            perks. Think of it as Chaos Shuffle all year around.
+          </p>
+          <h3>🌟 Features:</h3>
+          <p>
+            <ul>
+              <li>Randomise a Killer or Survivor from Dead by Daylight.</li>
+              <li>Get a completely randomised perk build.</li>
+              <li>
+                Pick a specific Killer or Survivor if you only want the perks
+                randomised
+              </li>
+              <li>Includes both character-specific and base perks.</li>
+              <li>Challenge yourself to win without using meta perks!</li>
+            </ul>
+          </p>
+          <p>
+            Whether you're playing casually or testing your skills, this DBD
+            perk randomiser brings a fresh and fun challenge every match! Try it
+            now and see if you can survive or dominate the trial!
+          </p>
+          <h3>🔍 Keywords:</h3>
+          <p>
+            Dead by Daylight Perk Randomiser, DBD Shuffle, Dead by Daylight
+            Killer Picker, Survivor Randomizer, DBD Perk Build Generator
+          </p>
+        </div>
+        <Form />
+      </main>
+      <footer>
+        <Link href='https://github.com/ramstedt/dbdshuffler'>Github</Link> |{' '}
+        <Link href='https://twitch.tv/catface404'>Twitch</Link>
+      </footer>
+    </>
   );
 }
