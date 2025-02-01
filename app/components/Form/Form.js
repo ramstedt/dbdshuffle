@@ -85,6 +85,7 @@ export default function Form() {
               onChange={handleChange}
               id='message'
               required
+              placeholder='Write a message'
             ></textarea>
           </div>
 
