@@ -1,6 +1,6 @@
-## Dead by Daylight Killer Perk Shuffle
+## Dead by Daylight Shuffle
 
-The name says it all. Pick the killer you want to play. Then randomize their perks. Can you win without the meta?
+Pick a killer or survivor, or randomise one. Then randomise their perks. Can you win without the meta?
 
 ## Installation
 
