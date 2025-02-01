@@ -256,8 +256,13 @@ export default function Home() {
         <Form />
       </main>
       <footer>
-        <Link href='https://github.com/ramstedt/dbdshuffler'>Github</Link> |{' '}
-        <Link href='https://twitch.tv/catface404'>Twitch</Link>
+        <Link href='https://github.com/ramstedt/dbdshuffle' target='_blank'>
+          Github
+        </Link>{' '}
+        |{' '}
+        <Link href='https://twitch.tv/catface404' target='_blank'>
+          Twitch
+        </Link>
       </footer>
     </>
   );
