@@ -141,34 +141,35 @@ export default function Home() {
           </div>
         )}
         <div>
-          <h2>Perks:</h2>
           {randomisedPerks ? (
-            <ul className={styles.perksList}>
-              {randomisedPerks.map((perk, index) => (
-                <li key={index} className={styles.perkItem}>
-                  {perk.image?.asset ? (
-                    <Image
-                      className={styles.perkImage}
-                      src={urlFor(perk.image.asset)}
-                      alt={perk.name}
-                      width={80}
-                      height={80}
-                    />
-                  ) : null}
-                  <a
-                    href={perk.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={styles.perkName}
-                  >
-                    {perk.name} <strong>({perk.killerName})</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No perks selected yet.</p>
-          )}
+            <div>
+              <h2>Perks:</h2>
+              <ul className={styles.perksList}>
+                {randomisedPerks.map((perk, index) => (
+                  <li key={index} className={styles.perkItem}>
+                    {perk.image?.asset ? (
+                      <Image
+                        className={styles.perkImage}
+                        src={urlFor(perk.image.asset)}
+                        alt={perk.name}
+                        width={80}
+                        height={80}
+                      />
+                    ) : null}
+                    <a
+                      href={perk.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className={styles.perkName}
+                    >
+                      {perk.name} <br />
+                      <small>({perk.killerName})</small>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
       <Form />
