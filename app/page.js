@@ -232,18 +232,16 @@ export default function Home() {
             perks. Think of it as Chaos Shuffle all year around.
           </p>
           <h3>🌟 Features:</h3>
-          <p>
-            <ul>
-              <li>Randomise a Killer or Survivor from Dead by Daylight.</li>
-              <li>Get a completely randomised perk build.</li>
-              <li>
-                Pick a specific Killer or Survivor if you only want the perks
-                randomised
-              </li>
-              <li>Includes both character-specific and base perks.</li>
-              <li>Challenge yourself to win without using meta perks!</li>
-            </ul>
-          </p>
+          <ul>
+            <li>Randomise a Killer or Survivor from Dead by Daylight.</li>
+            <li>Get a completely randomised perk build.</li>
+            <li>
+              Pick a specific Killer or Survivor if you only want the perks
+              randomised
+            </li>
+            <li>Includes both character-specific and base perks.</li>
+            <li>Challenge yourself to win without using meta perks!</li>
+          </ul>
           <p>
             Whether you're playing casually or testing your skills, this DBD
             perk randomiser brings a fresh and fun challenge every match! Try it
