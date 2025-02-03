@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+  max-width: 1024px;
 }
 
 .killerContainer h2 {
@@ -44,18 +45,26 @@
   margin-right: 8px;
 }
 
-.perkName {
+.perkName,
+.addonName {
   font-weight: bold;
   text-decoration: none;
   color: #f3f3f3;
 }
 
-.perkName:hover {
+.perkName:hover,
+.addonName:hover {
   text-decoration: underline;
 }
 
+.addonItem {
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
 .seo {
-  max-width: 900px;
+  max-width: 1024px;
   margin: auto;
   color: grey;
   text-align: left;
@@ -65,7 +74,7 @@
   margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .controls {
     flex-direction: row;
     max-width: fit-content;

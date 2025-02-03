@@ -16,14 +16,15 @@ export default function Home() {
   const [killers, setKillers] = useState([]);
   const [survivors, setSurvivors] = useState([]);
   const [allPerks, setAllPerks] = useState([]);
-  const [selectedType, setSelectedType] = useState('killer'); // 'killer' or 'survivor'
+  const [selectedType, setSelectedType] = useState('killer');
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [randomisedPerks, setRandomisedPerks] = useState(null);
+  const [randomisedAddons, setRandomisedAddons] = useState(null);
 
   useEffect(() => {
     setLoading(true);
 
-    const killerQuery = `*[_type == "killer"]{name, image, perks[]{name, image, url}}`;
+    const killerQuery = `*[_type == "killer"]{name, image, perks[]{name, image, url}, addons[]{name, image, url}}`;
     const survivorQuery = `*[_type == "survivor"]{name, image, perks[]{name, image, url}}`;
     const basePerkQuery = `*[_type == "basePerks"]{name, image, url, type}`;
 
@@ -93,6 +94,7 @@ export default function Home() {
       characters[Math.floor(Math.random() * characters.length)];
     setData(randomCharacter);
     setSelectedCharacter(randomCharacter);
+    console.log(randomCharacter);
   }, [characters]);
 
   // Handle manual character selection
@@ -114,12 +116,29 @@ export default function Home() {
     setRandomisedPerks(shuffledPerks);
   }, [allPerks, selectedType]);
 
-  // Randomise both character and perks
+  const getRandomAddons = () => {
+    if (!selectedCharacter?.addons || selectedCharacter.addons.length < 2) {
+      setRandomisedAddons(null);
+      console.log('No addons found or less than 2 addons available.');
+      return;
+    }
+
+    const shuffledAddons = [...selectedCharacter.addons]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 2);
+
+    setRandomisedAddons(shuffledAddons);
+  };
+
   const randomiseEverything = useCallback(() => {
     if (characters.length === 0) return;
-    getRandomCharacter();
+    const randomCharacter = getRandomCharacter();
     getRandomPerks();
-  }, [characters, getRandomCharacter, getRandomPerks]);
+
+    if (randomCharacter?.addons) {
+      getRandomAddons(randomCharacter);
+    }
+  }, [characters, getRandomCharacter, getRandomPerks, getRandomAddons]);
 
   return (
     <>
@@ -158,6 +177,17 @@ export default function Home() {
           <button onClick={getRandomPerks} disabled={allPerks.length < 4}>
             Randomise Perks
           </button>
+
+          {selectedType === 'killer' && (
+            <button
+              onClick={getRandomAddons}
+              disabled={
+                !selectedCharacter || selectedCharacter.addons?.length < 2
+              }
+            >
+              Randomise Add-ons
+            </button>
+          )}
 
           <button
             onClick={randomiseEverything}
@@ -221,6 +251,38 @@ export default function Home() {
               </div>
             ) : null}
           </div>
+          {randomisedAddons && (
+            <div>
+              <h2>Add-ons:</h2>
+              <ul>
+                {randomisedAddons.map((addon, index) => (
+                  <li key={index} className={styles.addonItem}>
+                    <>
+                      <span>
+                        <Image
+                          className={styles.addonImage}
+                          src={urlFor(addon.image.asset)}
+                          alt={addon.name}
+                          width={80}
+                          height={80}
+                        />
+                      </span>
+                      <span>
+                        <Link
+                          href={addon.url}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className={styles.addonName}
+                        >
+                          {addon.name} <br />
+                        </Link>
+                      </span>
+                    </>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div className={styles.seo}>
           <h2>🎲 Dead by Daylight Perk & Character Randomiser</h2>

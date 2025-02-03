@@ -13,6 +13,7 @@ main {
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   box-sizing: border-box;
   margin: 1rem;
@@ -51,6 +52,11 @@ footer a {
 
 footer a:hover {
   color: #8b0505;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
