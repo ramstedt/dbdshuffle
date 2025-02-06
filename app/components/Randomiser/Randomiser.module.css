@@ -76,15 +76,20 @@
   max-width: 1024px;
 }
 
-.killerContainer h2 {
+.characterContainer h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  width: 200px;
 }
 
-.killerImageWrapper {
+.characterImageWrapper {
   position: relative;
   height: 250px;
   width: 250px;
+}
+
+.perks {
+  width: 300px;
 }
 
 .perksList {
@@ -110,6 +115,7 @@
   font-weight: bold;
   text-decoration: none;
   color: #f3f3f3;
+  width: 200px;
 }
 
 .perkName:hover,
@@ -121,6 +127,10 @@
   text-align: left;
   display: flex;
   align-items: center;
+}
+
+.addons {
+  width: 300px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -136,7 +146,7 @@
     align-items: baseline;
   }
 
-  .killerImageWrapper {
+  .characterImageWrapper {
     height: 380px;
     width: 380px;
   }

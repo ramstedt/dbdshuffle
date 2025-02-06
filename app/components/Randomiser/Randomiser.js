@@ -166,7 +166,7 @@ export default function Randomiser() {
           <div className={styles.characterContainer}>
             <h2>{selectedCharacter.name}</h2>
             {selectedCharacter.image?.asset ? (
-              <div className={styles.killerImageWrapper}>
+              <div className={styles.characterImageWrapper}>
                 <Image
                   className={styles.characterImage}
                   src={urlFor(selectedCharacter.image.asset)}
@@ -183,7 +183,7 @@ export default function Randomiser() {
         )}
 
         {randomisedPerks && (
-          <div>
+          <div className={styles.perks}>
             <h2>Perks:</h2>
             <ul className={styles.perksList}>
               {randomisedPerks.map((perk, index) => (
@@ -213,7 +213,7 @@ export default function Randomiser() {
         )}
 
         {randomisedAddons && (
-          <div>
+          <div className={styles.addons}>
             <h2>Add-ons:</h2>
             <ul>
               {randomisedAddons.map((addon, index) => (
