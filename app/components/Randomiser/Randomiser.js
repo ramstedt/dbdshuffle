@@ -107,11 +107,14 @@ export default function Randomiser() {
           <option value=''>
             Select a {selectedType === 'killer' ? 'Killer' : 'Survivor'}
           </option>
-          {characters.map((character) => (
-            <option key={character.name} value={character.name}>
-              {character.name}
-            </option>
-          ))}
+          {characters
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((character) => (
+              <option key={character.name} value={character.name}>
+                {character.name}
+              </option>
+            ))}
         </select>
 
         <button
