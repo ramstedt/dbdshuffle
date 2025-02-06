@@ -205,7 +205,7 @@ export default function Randomiser() {
                     className={styles.perkName}
                   >
                     {perk.name} <br />
-                    <small>({perk.characterName})</small>
+                    <small>(The {perk.characterName})</small>
                   </Link>
                 </li>
               ))}
