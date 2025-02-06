@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import Form from './components/Form/Form';
 import Link from 'next/link';
 import Randomiser from './components/Randomiser/Randomiser';
+import DatasetLastUpdated from './components/DatasetLastUpdated/DatasetLastUpdated';
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
         <Form />
       </main>
       <footer>
+        <DatasetLastUpdated />
         <Link href='https://github.com/ramstedt/dbdshuffle' target='_blank'>
           Github
         </Link>{' '}

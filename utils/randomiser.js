@@ -74,3 +74,24 @@ export const randomiseEverything = (
     }, 100); // Delay to allow state update
   }
 };
+
+// Check when db (sanity) was last updated
+export const getLastUpdated = async () => {
+  try {
+    const query = `* | order(_updatedAt desc)[0]._updatedAt`;
+    const lastUpdated = await client.fetch(query);
+
+    if (!lastUpdated) {
+      return 'Unknown';
+    }
+
+    return new Date(lastUpdated).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch (error) {
+    console.error('Error fetching last updated timestamp:', error);
+    return 'Error fetching update time';
+  }
+};
