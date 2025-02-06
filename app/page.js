@@ -4,6 +4,7 @@ import Form from './components/Form/Form';
 import Link from 'next/link';
 import Randomiser from './components/Randomiser/Randomiser';
 import DatasetLastUpdated from './components/DatasetLastUpdated/DatasetLastUpdated';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -52,6 +53,17 @@ export default function Home() {
         <Link href='https://twitch.tv/catface404' target='_blank'>
           Twitch
         </Link>
+        <br />
+        <br />
+        <Link href='https://ko-fi.com/catface404' target='_blank'>
+          <Image
+            src='/kofi.webp'
+            alt='Support me on Ko-fi'
+            width={200}
+            height={50}
+          />
+        </Link>
+        <br />
       </footer>
     </>
   );
