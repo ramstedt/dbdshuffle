@@ -34,6 +34,12 @@ button:hover {
   background-color: #8b0505;
 }
 
+button:disabled {
+  background-color: #3a3a3a;
+  color: #212121;
+  cursor: initial;
+}
+
 select {
   padding: 10px;
   font-size: 16px;

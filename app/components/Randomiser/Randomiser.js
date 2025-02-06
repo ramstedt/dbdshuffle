@@ -132,14 +132,12 @@ export default function Randomiser() {
 
         {selectedType === 'killer' && (
           <button
-            onClick={() =>
-              getRandomAddons(selectedCharacter, setRandomisedAddons)
-            }
-            disabled={
-              !selectedCharacter || selectedCharacter.addons?.length < 2
-            }
+            onClick={() => {
+              getRandomAddons(selectedCharacter, setRandomisedAddons);
+            }}
+            disabled={!selectedCharacter || selectedCharacter.addons === null}
           >
-            Randomise Add-ons
+            Randomise Add-ons (beta)
           </button>
         )}
 
