@@ -162,7 +162,10 @@ export default function Randomiser() {
       <div className={styles.wrapper}>
         {selectedCharacter && (
           <div className={styles.characterContainer}>
-            <h2>{selectedCharacter.name}</h2>
+            <h2>
+              {selectedCharacter && selectedType === 'killer' ? 'The' : null}{' '}
+              {selectedCharacter.name}
+            </h2>
             {selectedCharacter.image?.asset ? (
               <div className={styles.characterImageWrapper}>
                 <Image
