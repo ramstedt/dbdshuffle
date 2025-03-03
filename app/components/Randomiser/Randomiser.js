@@ -208,7 +208,13 @@ export default function Randomiser() {
                     className={styles.perkName}
                   >
                     {perk.name} <br />
-                    <small>(The {perk.characterName})</small>
+                    <small>
+                      (
+                      {selectedCharacter && selectedType === 'killer'
+                        ? 'The '
+                        : null}
+                      {perk.characterName})
+                    </small>
                   </Link>
                 </li>
               ))}
