@@ -46,10 +46,6 @@ export default function Home() {
       </main>
       <footer>
         <DatasetLastUpdated />
-        <Link href="https://github.com/ramstedt/dbdshuffle" target="_blank">
-          Github
-        </Link>{' '}
-        |{' '}
         <Link href="https://twitch.tv/catastasis" target="_blank">
           Twitch
         </Link>
