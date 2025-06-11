@@ -46,19 +46,19 @@ export default function Home() {
       </main>
       <footer>
         <DatasetLastUpdated />
-        <Link href='https://github.com/ramstedt/dbdshuffle' target='_blank'>
+        <Link href="https://github.com/ramstedt/dbdshuffle" target="_blank">
           Github
         </Link>{' '}
         |{' '}
-        <Link href='https://twitch.tv/catface404' target='_blank'>
+        <Link href="https://twitch.tv/catastasis" target="_blank">
           Twitch
         </Link>
         <br />
         <br />
-        <Link href='https://ko-fi.com/catface404' target='_blank'>
+        <Link href="https://ko-fi.com/catastasis" target="_blank">
           <Image
-            src='/kofi.webp'
-            alt='Support me on Ko-fi'
+            src="/kofi.webp"
+            alt="Support me on Ko-fi"
             width={200}
             height={50}
           />

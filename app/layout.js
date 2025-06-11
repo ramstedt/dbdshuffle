@@ -19,7 +19,7 @@ export const metadata = {
     'Dead by Daylight Randomiser - Randomly pick a Killer, Survivor, and Perks. Can you survive without the meta?',
   keywords:
     'Dead by Daylight Perk Randomiser, DBD Shuffle, Dead by Daylight Killer Picker, Survivor Randomiser, DBD Perk Build Generator',
-  author: 'Catface',
+  author: 'Catastasis',
   openGraph: {
     title: 'Dead by Daylight Perk & Character Randomiser',
     description:
@@ -36,9 +36,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <Head>
-        <meta name='robots' content='index, follow' />
+        <meta name="robots" content="index, follow" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
