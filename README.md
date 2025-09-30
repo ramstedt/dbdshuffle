@@ -2,6 +2,12 @@
 
 Pick a killer or survivor, or randomise one. Then randomise their perks. Can you win without the meta?
 
+## Stack
+- Next.js
+- Node.js
+- Sanity
+- Firebase
+
 ## 🛠 Installation
 
 ```bash
