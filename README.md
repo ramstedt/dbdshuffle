@@ -6,7 +6,6 @@ Pick a killer or survivor, or randomise one. Then randomise their perks. Can you
 - Next.js
 - Node.js
 - Sanity
-- Firebase
 
 ## 🛠 Installation
 
