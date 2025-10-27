@@ -210,7 +210,9 @@ export default function Randomiser() {
                     {perk.name} <br />
                     <small>
                       (
-                      {selectedCharacter && selectedType === 'killer'
+                      {selectedCharacter &&
+                      selectedType === 'killer' &&
+                      perk.characterName !== 'General Perk'
                         ? 'The '
                         : null}
                       {perk.characterName})
