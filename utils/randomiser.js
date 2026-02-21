@@ -29,16 +29,46 @@ export const getRandomCharacter = (characters, setCharacterState) => {
 };
 
 // Randomise 4 perks
-export const getRandomPerks = (allPerks, selectedType, setPerkState) => {
+export const getRandomPerks = (
+  allPerks,
+  selectedType,
+  setPerkState,
+  options = {}
+) => {
+  const { currentPerks = [], lockedIndexes = [] } = options;
   const filteredPerks = allPerks.filter(
     (perk) => perk.type === selectedType || perk.type === null
   );
 
   if (filteredPerks.length < 4) return;
-  const shuffledPerks = [...filteredPerks]
+
+  const validLockedIndexes = lockedIndexes.filter(
+    (index) => currentPerks[index] && index >= 0 && index < 4
+  );
+  const lockedPerks = validLockedIndexes.map((index) => currentPerks[index]);
+  const lockedPerkNames = new Set(lockedPerks.map((perk) => perk.name));
+  const unlockedIndexes = [0, 1, 2, 3].filter(
+    (index) => !validLockedIndexes.includes(index)
+  );
+  const availablePerks = filteredPerks.filter(
+    (perk) => !lockedPerkNames.has(perk.name)
+  );
+
+  if (availablePerks.length < unlockedIndexes.length) return;
+
+  const newPerks = [...availablePerks]
     .sort(() => Math.random() - 0.5)
-    .slice(0, 4);
-  setPerkState(shuffledPerks);
+    .slice(0, unlockedIndexes.length);
+
+  const nextPerks = Array(4).fill(null);
+  validLockedIndexes.forEach((index) => {
+    nextPerks[index] = currentPerks[index];
+  });
+  unlockedIndexes.forEach((index, i) => {
+    nextPerks[index] = newPerks[i];
+  });
+
+  setPerkState(nextPerks);
 };
 
 // Randomise 2 add-ons (killers only)
@@ -61,12 +91,13 @@ export const randomiseEverything = (
   selectedType,
   setCharacterState,
   setPerkState,
-  setAddonState
+  setAddonState,
+  perkOptions = {}
 ) => {
   if (characters.length === 0) return;
 
   const randomCharacter = getRandomCharacter(characters, setCharacterState);
-  getRandomPerks(allPerks, selectedType, setPerkState);
+  getRandomPerks(allPerks, selectedType, setPerkState, perkOptions);
 
   if (selectedType === 'killer') {
     setTimeout(() => {

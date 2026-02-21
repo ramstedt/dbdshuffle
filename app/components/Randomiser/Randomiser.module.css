@@ -97,11 +97,19 @@
   margin: auto;
 }
 
+.lockHint {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #c7c7c7;
+}
+
 .perkItem {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   text-align: left;
+  gap: 8px;
 }
 
 .perkImage {
@@ -120,6 +128,31 @@
 .perkName:hover,
 .addonName:hover {
   text-decoration: underline;
+}
+
+.lockButton {
+  border: 1px solid #8a8a8a;
+  background: transparent;
+  color: #f3f3f3;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.lockButton:hover {
+  border-color: #f3f3f3;
+}
+
+.lockButton:focus-visible {
+  outline: 2px solid #f3f3f3;
+  outline-offset: 2px;
+}
+
+.locked {
+  background-color: #700c0c;
+  border-color: #700c0c;
 }
 
 .addonItem {

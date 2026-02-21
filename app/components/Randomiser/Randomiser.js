@@ -25,6 +25,7 @@ export default function Randomiser() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [randomisedPerks, setRandomisedPerks] = useState(null);
   const [randomisedAddons, setRandomisedAddons] = useState(null);
+  const [lockedPerkIndexes, setLockedPerkIndexes] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -72,6 +73,7 @@ export default function Randomiser() {
                 setSelectedCharacter(null);
                 setRandomisedPerks(null);
                 setRandomisedAddons(null);
+                setLockedPerkIndexes([]);
               }}
               className={styles.radioInput}
             />
@@ -88,6 +90,7 @@ export default function Randomiser() {
                 setSelectedCharacter(null);
                 setRandomisedPerks(null);
                 setRandomisedAddons(null);
+                setLockedPerkIndexes([]);
               }}
               className={styles.radioInput}
             />
@@ -125,9 +128,12 @@ export default function Randomiser() {
         </button>
 
         <button
-          onClick={() =>
-            getRandomPerks(allPerks, selectedType, setRandomisedPerks)
-          }
+          onClick={() => {
+            getRandomPerks(allPerks, selectedType, setRandomisedPerks, {
+              currentPerks: randomisedPerks || [],
+              lockedIndexes: lockedPerkIndexes,
+            });
+          }}
           disabled={allPerks.length < 4}
         >
           Randomise Perks
@@ -152,7 +158,11 @@ export default function Randomiser() {
               selectedType,
               setSelectedCharacter,
               setRandomisedPerks,
-              setRandomisedAddons
+              setRandomisedAddons,
+              {
+                currentPerks: randomisedPerks || [],
+                lockedIndexes: lockedPerkIndexes,
+              }
             )
           }
         >
@@ -188,7 +198,10 @@ export default function Randomiser() {
 
         {randomisedPerks && (
           <div className={styles.perks}>
-            <h2>Perks:</h2>
+            <h2>Perks</h2>
+            <p className={styles.lockHint}>
+              Lock any perk to keep it when rerolling.
+            </p>
             <ul className={styles.perksList}>
               {randomisedPerks.map((perk, index) => (
                 <li key={index} className={styles.perkItem}>
@@ -218,6 +231,27 @@ export default function Randomiser() {
                       {perk.characterName})
                     </small>
                   </Link>
+                  <button
+                    type='button'
+                    className={`${styles.lockButton} ${
+                      lockedPerkIndexes.includes(index) ? styles.locked : ''
+                    }`}
+                    onClick={() =>
+                      setLockedPerkIndexes((current) =>
+                        current.includes(index)
+                          ? current.filter((item) => item !== index)
+                          : [...current, index]
+                      )
+                    }
+                    aria-pressed={lockedPerkIndexes.includes(index)}
+                    aria-label={
+                      lockedPerkIndexes.includes(index)
+                        ? `Unlock ${perk.name}`
+                        : `Lock ${perk.name}`
+                    }
+                  >
+                    {lockedPerkIndexes.includes(index) ? 'Locked' : 'Lock'}
+                  </button>
                 </li>
               ))}
             </ul>
