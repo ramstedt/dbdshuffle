@@ -76,6 +76,14 @@
   max-width: 1024px;
 }
 
+.lock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 200px;
+}
+
 .characterContainer h2 {
   font-size: 24px;
   margin-bottom: 10px;
@@ -106,7 +114,8 @@
 
 .perkItem {
   margin-bottom: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   text-align: left;
   gap: 8px;
@@ -117,7 +126,14 @@
   margin-right: 8px;
 }
 
-.perkName,
+.perkName {
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #f3f3f3;
+  min-width: 0;
+}
+
 .addonName {
   font-weight: bold;
   text-decoration: none;
@@ -138,7 +154,9 @@
   padding: 4px 10px;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .lockButton:hover {

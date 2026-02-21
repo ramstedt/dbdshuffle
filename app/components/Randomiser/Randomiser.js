@@ -39,7 +39,7 @@ export default function Randomiser() {
             ...perk,
             characterName: char.name,
             type,
-          }))
+          })),
         );
 
       const killerPerks = characterPerks(killersData, 'killer');
@@ -121,7 +121,16 @@ export default function Randomiser() {
         </select>
 
         <button
-          onClick={() => getRandomCharacter(characters, setSelectedCharacter)}
+          onClick={() => {
+            const randomCharacter = getRandomCharacter(
+              characters,
+              setSelectedCharacter,
+            );
+
+            if (selectedType === 'killer' && randomisedAddons) {
+              getRandomAddons(randomCharacter, setRandomisedAddons);
+            }
+          }}
           disabled={characters.length === 0}
         >
           Randomise {selectedType === 'killer' ? 'Killer' : 'Survivor'}
@@ -162,7 +171,7 @@ export default function Randomiser() {
               {
                 currentPerks: randomisedPerks || [],
                 lockedIndexes: lockedPerkIndexes,
-              }
+              },
             )
           }
         >
@@ -214,44 +223,50 @@ export default function Randomiser() {
                       height={80}
                     />
                   )}
-                  <Link
-                    href={perk.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={styles.perkName}
-                  >
-                    {perk.name} <br />
-                    <small>
-                      (
-                      {selectedCharacter &&
-                      selectedType === 'killer' &&
-                      perk.characterName !== 'General Perk'
-                        ? 'The '
-                        : null}
-                      {perk.characterName})
-                    </small>
-                  </Link>
-                  <button
-                    type='button'
-                    className={`${styles.lockButton} ${
-                      lockedPerkIndexes.includes(index) ? styles.locked : ''
-                    }`}
-                    onClick={() =>
-                      setLockedPerkIndexes((current) =>
-                        current.includes(index)
-                          ? current.filter((item) => item !== index)
-                          : [...current, index]
-                      )
-                    }
-                    aria-pressed={lockedPerkIndexes.includes(index)}
-                    aria-label={
-                      lockedPerkIndexes.includes(index)
-                        ? `Unlock ${perk.name}`
-                        : `Lock ${perk.name}`
-                    }
-                  >
-                    {lockedPerkIndexes.includes(index) ? 'Locked' : 'Lock'}
-                  </button>
+                  <div className={styles.lock}>
+                    <div>
+                      <Link
+                        href={perk.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className={styles.perkName}
+                      >
+                        {perk.name} <br />
+                        <small>
+                          (
+                          {selectedCharacter &&
+                          selectedType === 'killer' &&
+                          perk.characterName !== 'General Perk'
+                            ? 'The '
+                            : null}
+                          {perk.characterName})
+                        </small>{' '}
+                      </Link>
+                    </div>
+                    <div>
+                      <button
+                        type='button'
+                        className={`${styles.lockButton} ${
+                          lockedPerkIndexes.includes(index) ? styles.locked : ''
+                        }`}
+                        onClick={() =>
+                          setLockedPerkIndexes((current) =>
+                            current.includes(index)
+                              ? current.filter((item) => item !== index)
+                              : [...current, index],
+                          )
+                        }
+                        aria-pressed={lockedPerkIndexes.includes(index)}
+                        aria-label={
+                          lockedPerkIndexes.includes(index)
+                            ? `Unlock ${perk.name}`
+                            : `Lock ${perk.name}`
+                        }
+                      >
+                        {lockedPerkIndexes.includes(index) ? 'Locked' : 'Lock'}
+                      </button>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -261,6 +276,7 @@ export default function Randomiser() {
         {randomisedAddons && (
           <div className={styles.addons}>
             <h2>Add-ons:</h2>
+            <p>&nbsp;</p>
             <ul>
               {randomisedAddons.map((addon, index) => (
                 <li key={index} className={styles.addonItem}>
